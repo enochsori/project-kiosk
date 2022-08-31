@@ -1,13 +1,17 @@
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import {
   Container,
-  createMuiTheme,
+  createTheme,
   CssBaseline,
   Paper,
   ThemeProvider,
 } from "@material-ui/core";
-import HomeScreen from "./screens/HomeScreen";
 
-const theme = createMuiTheme({
+import HomeScreen from "./screens/HomeScreen";
+import ChooseScreen from "./screens/ChooseScreen";
+
+const theme = createTheme({
   typography: {
     h1: { fontWeight: "bold" },
     h2: { fontSize: "2rem", color: "black" },
@@ -24,14 +28,17 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Container maxWidth='sm'>
-        <Paper>
-          <HomeScreen />
-        </Paper>
-      </Container>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Container maxWidth='sm'>
+          <Paper>
+            <Route path='/' component={HomeScreen} exact></Route>
+            <Route path='/choose' component={ChooseScreen} exact></Route>
+          </Paper>
+        </Container>
+      </ThemeProvider>
+    </Router>
   );
 }
 
